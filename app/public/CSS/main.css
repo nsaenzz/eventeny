@@ -1,0 +1,15 @@
+#bg-gradient {
+    background: linear-gradient(to bottom left, #0565a7, #6fdffb);
+    position: absolute;
+}
+
+a {
+    text-decoration: none;
+  }
+
+.flash-alert-top {
+    position: fixed!important;
+    left:2%;
+    width: 96%;
+    z-index: 100;
+}
