@@ -33,6 +33,14 @@ PHP Vanilla project with JQuery to create application for a event.
 
 ## Usage
 
-1. Run in your terminal `docker-compose up --build --watch`
-2. Go to your browser: `localhost:8001` to see the DB
-3. Go to your browser: `localhost` to see the App
+1. In your temrminal go to the project folder then go app folder and run `composer install`
+2. Run in your terminal `docker-compose up --build --watch`
+3. Go to your browser: `http://localhost:8001/` and login to your DB
+4. Go to enventeny's squema -> SQL. copy and paste `app/db/sql.sql` and run clicking `Go` Button
+5. Go to your browser: `http://localhost1/` and login with:
+   ### Organizer
+   - email: neil_saenz@yahoo.com
+   - password: password
+   ### Vendor
+   - email: neil_saenz@vendor.com
+   - password: password
