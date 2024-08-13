@@ -10,7 +10,6 @@ PHP Vanilla project with JQuery to create application for a event.
 ### Prerequisites
 
 1. Docker
-2. PHP 8.2
 3. composer
 4. Rename `app/web.env.example` to `app/web.env`. Enter your API and db credentials in `app/web.env`
    ```web.env
@@ -34,7 +33,6 @@ PHP Vanilla project with JQuery to create application for a event.
 
 ## Usage
 
-1. Open your terminal and go to the project folder then to the `app` folder: Run `composer install`
-2. Run in your terminal `docker-compose up --build --watch`
-3. Go to your browser: `localhost:8001` and login to your DB
-4. Go to enventeny's squema -> SQL. copy and paste `app/db/sql.sql` and run clicking `Go` Button
+1. Run in your terminal `docker-compose up --build --watch`
+2. Go to your browser: `localhost:8001` to see the DB
+3. Go to your browser: `localhost` to see the App
