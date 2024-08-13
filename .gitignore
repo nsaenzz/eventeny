@@ -3,3 +3,4 @@ DocumentRoot/
 app/vendor/
 app/db.env
 app/web.env
+app/public/img/applications/
