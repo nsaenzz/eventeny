@@ -12,3 +12,4 @@ RUN apt-get -y update --fix-missing && \
 
 # Install Composer
 RUN curl --silent --show-error https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+RUN composer install
