@@ -36,4 +36,4 @@ PHP Vanilla project with JQuery to create application for a event.
 
 1. Run in your terminal `docker-compose up --build --watch`
 2. Go to your browser: `localhost:8001` and login to your DB
-3. Go to enventeny squema -> sql. copy and paste app/db/sql.sql and run clicking Go
+3. Go to enventeny's squema -> SQL. copy and paste `app/db/sql.sql` and run clicking `Go` Button
