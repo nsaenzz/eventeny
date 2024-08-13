@@ -25,7 +25,7 @@ abstract class Model
             $className = array_pop($classArr);
             $this->table = Helper::camelToSnake($className);
         }
-        if($id){
+        if(!empty($id)){
             $this->removeExtractedVariables();
             $this->find($id);
         }

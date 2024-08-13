@@ -39,7 +39,6 @@ class Database
         $stm = $this->conn->prepare($query);
         $check = $stm->execute($data);
         if($check) {
-            //$result = $stm->fetchAll(PDO::FETCH_OBJ);
             $result = $stm->fetchAll(PDO::FETCH_ASSOC);
             return $result;
         }

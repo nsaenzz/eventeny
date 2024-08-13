@@ -11,7 +11,7 @@ include BASE_PATH . "/src/Views/Layouts/Homepage/carousel.php";
             href="<?php if(!empty($user)) {
                 echo ROOT."/vendors/applications";
             } else {
-                echo ROOT."/login?redirect=applications";
+                echo ROOT."/login?redirect=vendors-applications";
             }?>">View vendors' applications</a>
         </div>
     </div>

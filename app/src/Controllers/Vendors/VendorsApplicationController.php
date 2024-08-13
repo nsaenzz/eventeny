@@ -16,7 +16,8 @@ class VendorsApplicationController extends VendorsController
     {
         $user = Auth::user();
         $applicationsModel = new Applications();
-        $applications = $applicationsModel->all();
+        $applicationsModel->getAvailableApplications();
+        $applications = $applicationsModel->toArray();
         foreach ( $applications as &$application ) {
             $application['status'] = null;
             $submittedApplicationModel = new SubmittedApplications();

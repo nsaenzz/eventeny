@@ -90,7 +90,7 @@ class ApplicationController extends OrganizerController
         $application = new Applications();
         $newApplication = $application->create($applicationData);
 
-        $this->response->send($newApplication);
+        $this->response->redirect(ROOT."/organizer/applications");
     }
 
     public function changeApplicationStatus(Request $request, $args)

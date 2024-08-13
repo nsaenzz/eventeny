@@ -1,39 +1,35 @@
 <div class="container">
-    <div class="row justify-content-around">
-        <div class="col-10">
-            <h2 class="my-3">Applications Forms</h1>
-            <table class="table table-striped table-hover">
-                <thead>
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Title</th>
-                        <th scope="col">Description</th>
-                        <th scope="col">Price</th>
-                        <th scope="col">Status</th>
-                    </tr>
-                </thead>
-                <tbody>
-                <?php foreach($applications as $application) { ?>
-                    <tr> 
-                        <th scope="row"><?= $application['id'] ?></th>
-                        <td><?= $application['title'] ?></td>
-                        <td><?= $application['description'] ?></td>
-                        <td>$<?= number_format($application['price'], 2) ?></td>
-                        <?php if(isset($application['status'])) {
-                                $statusClass = match($application['status']) {
-                                    'waitlist' => 'text-secondary',
-                                    'approved' => 'text-success',
-                                    'denied' => 'text-danger'
-                                };
-                        ?>
-                            <td><span class="<?=$statusClass ?>"><?=ucwords($application['status']) ?></span></td>
-                        <?php } else { ?>
-                            <td><a type="button" class="btn btn-primary" href="<?=ROOT?>/vendors/applications/<?= $application['id'] ?>/apply">Apply</a></td>
-                        <?php } ?>
-                    </tr>
-                <? }?>   
-                </tbody> 
-            </table>
+    <?php if(empty($applications)) {?>
+        <p class="mt-5 fw-bolder">No available applications</p>
+    <?php } ?>
+    <?php $colNumber = 0; ?>
+    <?php foreach($applications as $application) { ?>
+        <?php if ($colNumber % 3 == 0) { ?>
+            <div class="row justify-content-around mt-4">
+        <? } ?>
+        <div class="col-4">
+            <div class="card" style="width: 95%">
+                <img src="<?=$application['cover_photo']?>" class="card-img-top" style="max-width: 100%">
+                <div class="card-body">
+                    <h5 class="card-title"><?= $application['title'] ?></h5>
+                    <p class="card-text"><?= $application['description'] ?></p>
+                    <?php if(isset($application['status'])) {
+                            $statusClass = match($application['status']) {
+                                'waitlist' => 'text-secondary',
+                                'approved' => 'text-success',
+                                'denied' => 'text-danger'
+                            };
+                    ?>
+                    <p class="text-center">Status: <span class="<?=$statusClass ?> fw-bolder"><?=ucwords($application['status']) ?></span></p>
+                    <?php } else { ?>
+                        <p class="text-center"><a href="<?=ROOT?>/vendors/applications/<?= $application['id'] ?>/apply" class="btn btn-primary">Apply</a></p>
+                    <?php } ?>
+                </div>
+            </div>
         </div>
+        <?php if (++$colNumber % 3 == 0 || $colNumber == count($applications)) { ?>
+            </div>
+        <? } ?>
+    <? }?>  
     </div>
 </div>
