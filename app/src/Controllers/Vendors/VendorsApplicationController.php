@@ -72,8 +72,19 @@ class VendorsApplicationController extends VendorsController
             } else {           
                 try{  
                     $application = new SubmittedApplications();
+                    $defaultFormInputs= ['business_name', 'business_email', 'business_phone'];
+                    $data = [];
+                    $customInputs = [];
+                    foreach($inputs as $key=>$input){
+                        if(in_array($key, $defaultFormInputs)){
+                            $data[$key] = $input;
+                        } else {
+                            $customInputs[$key] = $input;
+                        }
+                    }
+                    $data['custom_inputs'] = serialize($customInputs);
                     $applicationData = [
-                        ...$inputs,
+                        ...$data,
                         'application_id' => $args['id'],
                         'user_id' => $user->id
                     ];

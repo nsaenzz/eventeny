@@ -4,6 +4,7 @@ namespace App\Controllers\Organizer;
 
 use App\Helpers\FlashMessage;
 use App\Helpers\Helper;
+use App\Models\AdditionalFormInputs;
 use App\Models\Applications;
 use App\Models\SubmittedApplications;
 use App\Requests\Request;
@@ -30,10 +31,15 @@ class ApplicationController extends OrganizerController
     public function show(Request $request, $arguments)
     {
         $application = new Applications($arguments['id']);
-        $this->data['application'] = $application;
-        $this->response->render('Organizer/Applications/showApplication', 
-            $this->data
-        );
+        if(isset($application->id)){
+            $this->data['application'] = $application;
+            $this->response->render('Organizer/Applications/showApplication', 
+                $this->data
+            );
+        } else {
+            FlashMessage::flash("Error", "Application Not Found", FlashMessage::FLASH_ERROR);
+            $this->response->back();
+        }
     }
 
 
@@ -84,6 +90,7 @@ class ApplicationController extends OrganizerController
             'deadline_from' => date('Y-m-d H:i:s', strtotime($inputs['deadline_from'] . " 00:00:00")),
             'deadline_to' => date('Y-m-d H:i:s', strtotime($inputs['deadline_to'] . " 23:59:59")),
             'cover_photo' => ROOT . '/public/img/' . $fileNamePath,
+            'custom_form_inputs' => $inputs['additional_inputs'] ?? null,
             'price' => number_format($inputs['price'], 2)
         ];
 
@@ -93,20 +100,12 @@ class ApplicationController extends OrganizerController
         $this->response->redirect(ROOT."/organizer/applications");
     }
 
-    public function changeApplicationStatus(Request $request, $args)
-    {   
-        $inputs = $request->params;
-        $submittedApplication = new SubmittedApplications();
-        if(in_array($inputs['status'], ['waitlist', 'approved', 'denied'])) {  
-            try {
-                $submittedApplication->find($args['id']);
-                $submittedApplication->status = $inputs['status'];
-                $submittedApplication->save();
-            } catch (\Exception $e) {
-                $this->response->json(["type" => "error", "message" => $e->getMessage()]);
-            }
-        }
-        $this->response->json(["type" => "success", "message" => "saved successfully"]);
+    public function getDefaultInput(Request $request, $args)
+    {
+        $inputs = $request->postParms;
+        $additinalFormInputs = new AdditionalFormInputs;
+        $additinalFormInputs->findByName($inputs['inputName']);
+        return $this->response->json(["input" => $additinalFormInputs->toArray()]);
     }
 
 }

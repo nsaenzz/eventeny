@@ -33,7 +33,7 @@ class SubmittedApplications extends Model
     }
 
 
-    public function applications() : Model
+    public function application() : Model
     {
         return $this->belongsTo("\App\Models\Applications", "application_id", "id");
     }

@@ -24,7 +24,7 @@ class NewApplicationValidator extends Validator
     public function initRules() : void
     {
         $this->rules['title'] = V::alnum(' ', ',', '?', '!')->length(2, 255);
-        $this->rules['description'] = V::alnum(' ', ',', '?', '!')->length(2, 65535);
+        $this->rules['description'] = V::StringType()->length(2, 65535);
         $this->rules['deadline_from'] = V::date('m/d/Y');
         $this->rules['deadline_to'] = V::date('m/d/Y');
         $this->rules['price'] = V::number();

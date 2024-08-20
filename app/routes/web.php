@@ -4,6 +4,7 @@ use App\Controllers\ErrorsController;
 use App\Controllers\HomepageController;
 use App\Controllers\LoginController;
 use App\Controllers\Organizer\ApplicationController;
+use App\Controllers\Organizer\ApplicationSubmittedController;
 use App\Controllers\Organizer\OrganizerDashboardController;
 use App\Controllers\RegisterController;
 use App\Controllers\Vendors\VendorsDashboardController;
@@ -23,7 +24,9 @@ return [
     ['GET', '/organizer/applications/create', [ApplicationController::class, 'create']],
     ['POST', '/organizer/applications/create', [ApplicationController::class, 'store']],
     ['GET', '/organizer/applications/{id:\d+}', [ApplicationController::class, 'show']],
-    ['PATCH', '/organizer/applications/submitted/{id:\d+}/status', [ApplicationController::class, 'changeApplicationStatus']],
+    ['POST', '/organizer/applications/addInputs', [ApplicationController::class, 'getDefaultInput']],
+    ['GET', '/organizer/applications/submitted/{id:\d+}', [ApplicationSubmittedController::class, 'show']],
+    ['PATCH', '/organizer/applications/submitted/{id:\d+}/status', [ApplicationSubmittedController::class, 'changeApplicationStatus']],
 
     //Vendors Pages
     ['GET', '/vendors', [VendorsDashboardController::class, 'index']],

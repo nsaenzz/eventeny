@@ -22,7 +22,7 @@ class NewSubmittedApplicationValidator extends Validator
      */
     public function initRules() : void
     {
-        $this->rules['business_name'] = V::alpha(' ')->length(2, 255);
+        $this->rules['business_name'] = V::alnum(" ")->length(2, 255);
         $this->rules['business_email'] = V::email();
         $this->rules['business_phone'] = V::phone();
     }

@@ -12,7 +12,7 @@
                 <img src="<?=$application['cover_photo']?>" class="card-img-top" style="max-width: 100%">
                 <div class="card-body">
                     <h5 class="card-title"><?= $application['title'] ?></h5>
-                    <p class="card-text"><?= $application['description'] ?></p>
+                    <p class="card-text"><?= strlen($application['description']) > 1000 ? substr($application['description'],0, 1000)."..." : $application['description'] ?></p>
                     <?php if(isset($application['status'])) {
                             $statusClass = match($application['status']) {
                                 'waitlist' => 'text-secondary',

@@ -138,7 +138,7 @@ abstract class Model
             $model = new $related();
             if (isset($this->$foreignKey)) {
                 $key = $this->$foreignKey;
-                $sql = "SELECT * FROM " . $model->table . "WHERE $ownerKey = :key";
+                $sql = "SELECT * FROM " . $model->table . " WHERE $ownerKey = :key";
                 $model->query($sql, ['key'=>$key]);
                 return $model->get();
             }

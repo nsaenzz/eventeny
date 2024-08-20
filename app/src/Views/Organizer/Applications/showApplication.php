@@ -15,7 +15,7 @@
                 <tbody>
                 <?php foreach($application->submittedApplications() as $submittedApp) { ?>
                     <tr>
-                        <th scope="row"><?= $submittedApp->id ?></th>
+                        <th scope="row"><a class="" href="<?=ROOT?>/organizer/applications/submitted/<?= $submittedApp->id ?>"><?= $submittedApp->id ?></a></th>
                         <td><?= $submittedApp->business_name ?></td>
                         <td><?= $submittedApp->business_email ?></td>
                         <td><?= $submittedApp->business_phone ?></td>

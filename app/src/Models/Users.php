@@ -12,7 +12,7 @@ class Users extends Model
     public function findByEmail($email)
     {
         $sql = "SELECT * FROM " . $this->table . " WHERE email = LOWER(:email) ";
-        $this->query($sql, ['email'=>strtolower($email)]);
+        $this->query($sql, ['email'=>$email]);
         return $this->get();
     }
 

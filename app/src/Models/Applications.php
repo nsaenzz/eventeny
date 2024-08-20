@@ -22,4 +22,17 @@ class Applications extends Model
         return $this->get();
     }
 
+    public function getAdditionalInputs() : array
+    {
+        $additionalInputs = [];
+        if (isset($this->custom_form_inputs)) {
+            $inputNames = explode(",", $this->custom_form_inputs);
+            foreach($inputNames as $inputName) {
+                $additionalFormInputs = new AdditionalFormInputs();
+                $additionalInputs[] = $additionalFormInputs->findByName($inputName);
+            }
+        }
+        return $additionalInputs;
+    }
+
 }
