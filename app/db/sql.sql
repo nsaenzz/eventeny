@@ -29,12 +29,12 @@ CREATE TABLE `applications` (
   `deadline_from` datetime NOT NULL,
   `deadline_to` datetime NOT NULL,
   `cover_photo` varchar(255) NOT NULL,
-  `customs_form_fields` text,
+  `custom_form_inputs` text,
   `price` double(10,2) NOT NULL DEFAULT '0.00',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='title, description, deadline, a cover photo';
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='title, description, deadline, a cover photo';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -139,12 +139,12 @@ CREATE TABLE `submitted_applications` (
   `business_name` varchar(255) NOT NULL,
   `business_email` varchar(100) NOT NULL,
   `business_phone` varchar(45) NOT NULL,
-  `custom_fields` text,
+  `custom_inputs` text,
   `status` enum('waitlist','approved','denied') NOT NULL DEFAULT 'waitlist',
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -208,6 +208,22 @@ LOCK TABLES `users` WRITE;
 INSERT INTO `users` VALUES (2,'Neil R Saenz','neil_saenz@yahoo.com','$2y$10$FXT2tsTwR07.YfRKzjMe5.06SY3eXPVBblxOENOmd8hL7dKfuWDYG','organizer',NULL,'2024-07-22 00:40:52','2024-07-22 00:40:52',NULL),(3,'Neil Vendor','neil@vendor.com','$2y$10$ioLmi.jhlFUSDSEvFUSTLeNrDqeOkuUQjqPXWOu63M29p2YKPtSnW','vendor',NULL,'2024-08-06 16:30:46','2024-08-12 16:56:58',NULL);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Table structure for table `additional_form_inputs`
+--
+
+DROP TABLE IF EXISTS `additional_form_inputs`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `additional_form_inputs` (
+  `id` int unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(45) NOT NULL,
+  `html` varchar(5000) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `name_UNIQUE` (`name`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
